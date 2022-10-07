@@ -5,7 +5,7 @@
 exports.up = function (knex) {
 	return knex.schema.createTable('toppings', (table) => {
 		table.increments('topping_id').primary()
-		table.string('toppings').unique()
+		table.string('topping').unique()
 		table.timestamps(true, true)
 	})
 }

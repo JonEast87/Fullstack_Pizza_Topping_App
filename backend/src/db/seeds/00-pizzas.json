@@ -1,11 +1,14 @@
 [
   {
+    "name": "pepperoni cheese mushroom pizza",
     "toppings": ["pepperoni", "cheese", "mushroom"]
   },
   {
+    "name": "cheese mushroom pizza",
     "toppings": ["cheese", "mushroom"]
   },
   {
+    "name": "cheese pizza",
     "toppings": ["cheese"]
   }
 ]

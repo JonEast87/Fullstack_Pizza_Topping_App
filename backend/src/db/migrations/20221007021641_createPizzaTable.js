@@ -5,11 +5,7 @@
 exports.up = function (knex) {
 	return knex.schema.createTable('pizzas', (table) => {
 		table.increments('pizza_id').primary()
-		table
-			.foreign('topping_id')
-			.references('topping_id')
-			.inTable('toppings')
-			.onDelete('cascade')
+		table.string('name').unique()
 		table.text('toppings').unique()
 		table.timestamps(true, true)
 	})
