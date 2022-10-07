@@ -1,0 +1,11 @@
+[
+  {
+    "toppings": ["pepperoni", "cheese", "mushroom"]
+  },
+  {
+    "toppings": ["cheese", "mushroom"]
+  },
+  {
+    "toppings": ["cheese"]
+  }
+]
