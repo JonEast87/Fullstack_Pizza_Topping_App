@@ -38,7 +38,6 @@ async function update(req, res, next) {
 }
 
 async function destroy(req, res, next) {
-	// console.log(res.locals.pizza)
 	service
 		.delete(res.locals.pizza.pizza_id)
 		.then(() => res.sendStatus(204))
