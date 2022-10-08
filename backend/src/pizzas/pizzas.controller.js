@@ -17,25 +17,6 @@ function pizzaExists(req, res, next) {
 		.catch(next)
 }
 
-// function pizzaProperties(req, res, next) {
-// 	const { toppings, name } = req.body.data
-// 	console.log(toppings)
-// 	if (!toppings) {
-// 		return next({
-// 			status: 400,
-// 			message: 'toppings must be selected.',
-// 		})
-// 	}
-
-// 	if (!name) {
-// 		return next({
-// 			status: 400,
-// 			message: 'A name must be entered for the pizza.',
-// 		})
-// 	}
-// 	next()
-// }
-
 async function list(req, res, next) {
 	service
 		.list()

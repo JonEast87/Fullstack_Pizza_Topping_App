@@ -1,7 +1,7 @@
 const request = require('supertest')
 
-const app = require('../app')
-const knex = require('../db/connection')
+const app = require('../src/app')
+const knex = require('../src/db/connection')
 
 describe('path /pizzas', () => {
 	beforeAll(() => {
@@ -19,6 +19,7 @@ describe('path /pizzas', () => {
 		return knex.migrate.rollback(null, true).then(() => knex.destroy())
 	})
 
+	// TESTING FOR POST FUNCTIONS
 	describe('POST /pizzas', () => {
 		test('return 400 if name is missing', async () => {
 			const data = {
@@ -64,7 +65,9 @@ describe('path /pizzas', () => {
 			expect(response.status).toBe(201)
 		})
 	})
+	// END OF TESTING FOR POST FUNCTIONS
 
+	// TESTING FOR PUT FUNCTIONS
 	describe('PUT /pizzas', () => {
 		test('return 400 if name is missing', async () => {
 			const data = {
@@ -110,7 +113,6 @@ describe('path /pizzas', () => {
 				.set('Accept', 'application/json')
 				.send({ data: pizza })
 
-			console.log(response.body.data[0].toppings)
 			expect(response.body.error).toBeUndefined()
 			expect(response.body.data[0].name).toBe('Green')
 			expect(response.body.data[0].toppings).toContain('pepperoni')
@@ -118,4 +120,42 @@ describe('path /pizzas', () => {
 			expect(response.status).toBe(200)
 		})
 	})
+	// END OF TESTING FOR PUT FUNCTIONS
+
+	// TESTING FOR DELETE FUNCTIONS
+	describe('DELETE /pizzas', () => {
+		test('return 404 if pizza is non-existent', async () => {
+			const response = await request(app)
+				.delete('/pizzas/99')
+				.set('Accept', 'application/json')
+				.send({ datum: {} })
+
+			expect(response.body.error).toContain('Pizza cannot be found.')
+			expect(response.status).toBe(404)
+		})
+
+		test('return 200 if pizza is delete successfully', async () => {
+			const data = {
+				name: 'Green',
+				toppings: ['pepperoni', 'mushroom'],
+			}
+
+			const makePizza = await request(app)
+				.post('/pizzas')
+				.set('Accept', 'application/json')
+				.send({ data })
+
+			expect(makePizza.body.error).toBeUndefined()
+			expect(makePizza.status).toBe(201)
+
+			const deletePizza = await request(app)
+				.delete('/pizzas/4')
+				.set('Accept', 'application/json')
+				.send({ datum: {} })
+
+			expect(deletePizza.body.error).toBeUndefined()
+			expect(deletePizza.status).toBe(204)
+		})
+	})
+	// END OF TESTING FOR DELETE FUNCTIONS
 })

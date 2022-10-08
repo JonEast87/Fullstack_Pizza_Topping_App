@@ -8,7 +8,7 @@ function create(topping) {
 	return knex('toppings')
 		.insert(topping)
 		.returning('*')
-		.then((data) => data[9])
+		.then((data) => data[0])
 }
 
 function read(topping_id) {

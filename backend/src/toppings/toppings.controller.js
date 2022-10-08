@@ -1,4 +1,8 @@
 const service = require('./toppings.service')
+const hasProperties = require('../errors/hasProperties')
+
+const REQUIRED_PROPERTIES = ['topping']
+const hasRequiredProperties = hasProperties(...REQUIRED_PROPERTIES)
 
 function toppingExists(req, res, next) {
 	service
@@ -8,37 +12,26 @@ function toppingExists(req, res, next) {
 				res.locals.topping = topping
 				return next()
 			}
-			next({ status: 404, message: `Topping cannot be found.` })
+			next({ status: 404, message: `topping cannot be found.` })
 		})
 		.catch(next)
 }
 
-function toppingProperties(req, res, next) {
-	const { topping } = req.body
-	if (!topping) {
-		return next({
-			status: 400,
-			message: 'A topping must be entered.',
-		})
-	}
-	next()
-}
-
 async function list(req, res) {
-	const toppings = await service.list()
-	res.locals.data = toppings
-	const { data } = res.locals
-	res.json({ data: data })
+	service
+		.list()
+		.then((data) => res.json({ data }))
+		.catch(next)
 }
 
 async function create(req, res) {
-	const data = await service.create(req.body)
+	const data = await service.create(req.body.data)
 	res.status(201).json({ data })
 }
 
 async function update(req, res, next) {
 	const updatedTopping = {
-		...req.body,
+		...req.body.data,
 		topping_id: res.locals.topping.topping_id,
 	}
 	service
@@ -56,7 +49,7 @@ async function destroy(req, res, next) {
 
 module.exports = {
 	list,
-	create: [toppingProperties, create],
-	update: [toppingExists, toppingProperties, update],
+	create: [hasRequiredProperties, create],
+	update: [toppingExists, hasRequiredProperties, update],
 	delete: [toppingExists, destroy],
 }

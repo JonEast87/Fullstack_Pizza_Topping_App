@@ -24,6 +24,6 @@
 
 ### Testing Instructions
 
-> You can run the tests by typing in the command console from the backend directory: `npm run test`
+> You can run the tests by typing in the command console from the backend directory: `npm run test` this will run both pizza-toppings.test and topping.test files.
 
 ---
