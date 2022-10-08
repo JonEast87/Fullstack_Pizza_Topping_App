@@ -13,11 +13,29 @@ function pizzaExists(req, res, next) {
 		.catch(next)
 }
 
-async function list(req, res) {
-	const pizzas = await service.list()
-	res.locals.data = pizzas
-	const { data } = res.locals
-	res.json({ data: data })
+function pizzaProperties(req, res, next) {
+	const { toppings, name } = req.body
+	if (!toppings) {
+		return next({
+			status: 400,
+			message: 'toppings must be selected.',
+		})
+	}
+
+	if (!name) {
+		return next({
+			status: 400,
+			message: 'A name must be entered for the pizza.',
+		})
+	}
+	next()
+}
+
+async function list(req, res, next) {
+	service
+		.list()
+		.then((data) => res.json({ data }))
+		.catch(next)
 }
 
 async function create(req, res) {
@@ -46,7 +64,7 @@ async function destroy(req, res, next) {
 
 module.exports = {
 	list,
-	create,
-	update: [pizzaExists, update],
+	create: [pizzaProperties, create],
+	update: [pizzaExists, pizzaProperties, update],
 	delete: [pizzaExists, destroy],
 }

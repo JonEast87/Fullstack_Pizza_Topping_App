@@ -1,24 +1,16 @@
 # Full Stack Developer
 
----
-
-At StrongMind we work in terms of user stories with varying degrees of requirements along with lots of feedback cycles. We feel the best way to measure how someone would work with our team is to simulate self-organized work. The following steps make up the technical interview. Any language/framework for submissions is acceptable. Python or Ruby preferred.
-
-Create a GitHub repository for this project.
-Complete the stories below.
-Deploy your application (see below for options)
-Email recruiter@strongmind.com links to your application repository and working deployed application with the subject “Full Stack Developer Candidate - Your Name"
-
-## Stories
-
----
-
 ### Readme
 
 ---
 
 - It should describe steps required for building and running locally
+
 - It should describe how to run tests locally
+
+## Stories
+
+---
 
 ### Manage Toppings
 
@@ -44,23 +36,3 @@ As a pizza chef I should be able to create new pizza master pieces
 - It should allow me to update an existing pizza
 - It should allow me to update toppings on an existing pizza
 - It should not allow me to enter duplicate pizzas
-
-### Deployment
-
----
-
-Your project should be deployed to a service of your choice. If you need some references to free web resources for development try https://free-for.dev
-
-All the major cloud providers have some sort of free plan. Here are some examples:
-
-Azure
-
-Heroku
-
-Google
-
-IBM
-
-AWS
-
-Oracle

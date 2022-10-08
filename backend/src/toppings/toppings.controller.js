@@ -13,6 +13,17 @@ function toppingExists(req, res, next) {
 		.catch(next)
 }
 
+function toppingProperties(req, res, next) {
+	const { topping } = req.body
+	if (!topping) {
+		return next({
+			status: 400,
+			message: 'A topping must be entered.',
+		})
+	}
+	next()
+}
+
 async function list(req, res) {
 	const toppings = await service.list()
 	res.locals.data = toppings
@@ -30,7 +41,6 @@ async function update(req, res, next) {
 		...req.body,
 		topping_id: res.locals.topping.topping_id,
 	}
-	console.log(updatedTopping)
 	service
 		.update(updatedTopping)
 		.then((data) => res.json({ data }))
@@ -46,7 +56,7 @@ async function destroy(req, res, next) {
 
 module.exports = {
 	list,
-	create,
-	update: [toppingExists, update],
+	create: [toppingProperties, create],
+	update: [toppingExists, toppingProperties, update],
 	delete: [toppingExists, destroy],
 }
