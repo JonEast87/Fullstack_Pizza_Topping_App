@@ -1,0 +1,13 @@
+{
+  "name": "fullstack-pizza-topping-app",
+  "version": "1.0.0",
+  "description": "Take home project for pizza building app.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonEast87/Fullstack_Pizza_Topping_App"
+  },
+  "keywords": [],
+  "author": "Jonathan Eastin",
+  "license": "UNLICENSED"
+}
