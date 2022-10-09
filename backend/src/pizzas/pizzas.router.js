@@ -7,8 +7,9 @@ const controller = require('./pizzas.controller')
  * @type {Router}
  *
  */
+router.route('/:pizza_id/edit').put(controller.update)
 
-router.route('/:pizza_id').delete(controller.delete).put(controller.update)
+router.route('/:pizza_id').delete(controller.delete)
 
 router.route('/').get(controller.list).post(controller.create)
 

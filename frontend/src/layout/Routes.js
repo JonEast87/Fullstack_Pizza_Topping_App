@@ -18,14 +18,11 @@ function Routes() {
 			<Route exact={true} path='/'>
 				<Redirect to={'/dashboard'} />
 			</Route>
-			<Route exact={true} path='/pizzas'>
-				<Redirect to={'/dashboard'} />
+			<Route path='/dashboard'>
+				<Dashboard />
 			</Route>
 			<Route path='/pizzas'>
 				<Pizzas />
-			</Route>
-			<Route path='/dashboard'>
-				<Dashboard />
 			</Route>
 			<Route path='/toppings'>
 				<Toppings />

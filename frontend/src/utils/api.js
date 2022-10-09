@@ -134,7 +134,7 @@ export async function readTopping(id, signal) {
  * a promise that resolves to an updated object of pizza saved in the database
  */
 export async function updatePizza(pizza_id, newToppings, signal) {
-	const url = new URL(`${API_BASE_URL}/pizzas/${pizza_id}`)
+	const url = new URL(`${API_BASE_URL}/pizzas/${pizza_id}/edit`)
 	const options = {
 		method: 'PUT',
 		headers,
@@ -150,11 +150,41 @@ export async function updatePizza(pizza_id, newToppings, signal) {
  * a promise that resolves to an updated object of topping saved in the database
  */
 export async function updateTopping(topping_id, newTopping, signal) {
-	const url = new URL(`${API_BASE_URL}/toppings/${topping_id}/topping`)
+	const url = new URL(`${API_BASE_URL}/toppings/${topping_id}/edit`)
 	const options = {
 		method: 'PUT',
 		headers,
 		body: JSON.stringify({ data: { topping: newTopping } }),
+		signal,
+	}
+	return await fetchJson(url, options)
+}
+
+/**
+ * Deletes an existing pizza
+ * @returns {Promise<{}>}
+ * a promise that resolve to an empty object removed in the database
+ */
+export async function deletePizza(pizza_id, signal) {
+	const url = new URL(`${API_BASE_URL}/pizzas/${pizza_id}`)
+	const options = {
+		method: 'DELETE',
+		headers,
+		signal,
+	}
+	return await fetchJson(url, options)
+}
+
+/**
+ * Deletes an existing topping
+ * @returns {Promise<{}>}
+ * a promise that resolve to an empty object removed in the database
+ */
+export async function deleteTopping(topping_id, signal) {
+	const url = new URL(`${API_BASE_URL}/toppings/${topping_id}`)
+	const options = {
+		method: 'DELETE',
+		headers,
 		signal,
 	}
 	return await fetchJson(url, options)

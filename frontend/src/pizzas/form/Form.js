@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router'
-import { createTopping, updateTopping } from '../../utils/api'
+import { createPizza, updatePizza } from '../../utils/api'
 import ErrorAlert from '../../layout/ErrorAlert'
 
 /**
@@ -12,24 +12,20 @@ import ErrorAlert from '../../layout/ErrorAlert'
 
 function Form({ method }) {
 	const { topping_id } = useParams()
-	const [toppingError, setToppingError] = useState(null)
+	const [pizzaError, setPizzaError] = useState(null)
 	const history = useHistory()
 
 	const initialState = {
-		topping: '',
+		toppings: [],
 	}
 
-	const [topping, setTopping] = useState({ ...initialState })
+	const [pizza, setPizza] = useState({ ...initialState })
 
 	useEffect(() => {
 		if (method === 'POST') return
 
 		const abortController = new AbortController()
-		setToppingError(null)
-
-		// readTopping(topping_id, abortController.signal)
-		// 	.then(setTopping)
-		// 	.catch(setToppingError)
+		setPizzaError(null)
 
 		return () => abortController.abort()
 	}, [topping_id, method])
@@ -37,12 +33,12 @@ function Form({ method }) {
 	const handleChange = ({ target }) => {
 		let value = target.value
 
-		if (target.topping === 'topping' && typeof value === 'string') {
+		if (target.toppings === 'toppings' && typeof value === 'string') {
 			value = +value
 		}
 
-		setTopping({
-			...topping,
+		setPizza({
+			...pizza,
 			[target.name]: value,
 		})
 	}
@@ -54,28 +50,24 @@ function Form({ method }) {
 
 	const submitNew = () => {
 		const abortController = new AbortController()
-		setToppingError(null)
+		setPizzaError(null)
 
-		createTopping(topping, abortController.signal)
+		createPizza(pizza, abortController.signal)
 			.then(() => history.push(`/dashboard`))
-			.catch(setToppingError)
+			.catch(setPizzaError)
 	}
 
 	const submitEdit = () => {
 		const abortController = new AbortController()
-		setToppingError(null)
+		setPizzaError(null)
 
-		const toppingData = {
-			topping: topping,
+		const pizzaData = {
+			toppings: pizza.toppings,
 		}
 
-		updateTopping(
-			topping_id,
-			toppingData.topping.topping,
-			abortController.signal
-		)
+		updatePizza(topping_id, pizzaData.toppings, abortController.signal)
 			.then(() => history.push(`/dashboard`))
-			.catch(setToppingError)
+			.catch(setPizzaError)
 	}
 
 	const handleCancel = (event) => {
@@ -87,14 +79,14 @@ function Form({ method }) {
 		<form onSubmit={handleSubmit}>
 			<fieldset>
 				<div className='form-group'>
-					<label htmlFor='topping'>Topping</label>
+					<label htmlFor='topping'>Edit Pizza Toppings</label>
 					<input
 						id='topping'
 						type='text'
 						name='topping'
 						className='form-control'
 						onChange={handleChange}
-						value={topping.topping}
+						value={pizza.toppings}
 						required={true}
 					/>
 
@@ -109,7 +101,7 @@ function Form({ method }) {
 						<span className='oi oi-check'>Submit</span>
 					</button>
 				</div>
-				<ErrorAlert error={toppingError} />
+				<ErrorAlert error={pizzaError} />
 			</fieldset>
 		</form>
 	)

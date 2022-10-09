@@ -29,13 +29,13 @@ function Menu() {
 					</li>
 					<li className='nav-item'>
 						<Link className='nav-link' to='/pizzas/new'>
-							<span className='oi oi-plus' />
+							<span className='oi oi-fire' />
 							&nbsp;New Pizza
 						</Link>
 					</li>
 					<li className='nav-item'>
 						<Link className='nav-link' to='/toppings/new'>
-							<span className='oi oi-layers' />
+							<span className='oi oi-sun' />
 							&nbsp;New Topping
 						</Link>
 					</li>

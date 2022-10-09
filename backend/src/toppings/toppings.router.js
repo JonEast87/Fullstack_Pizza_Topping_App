@@ -8,7 +8,9 @@ const controller = require('./toppings.controller')
  *
  */
 
-router.route('/:topping_id').delete(controller.delete).put(controller.update)
+router.route('/:topping_id/edit').put(controller.update)
+
+router.route('/:topping_id').delete(controller.delete)
 
 router.route('/').get(controller.list).post(controller.create)
 
