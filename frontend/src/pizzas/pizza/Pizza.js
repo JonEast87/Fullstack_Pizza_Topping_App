@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Pizza(pizza) {
-	const { name, toppings } = pizza
+	const { pizza_id, name, toppings } = pizza.pizzas
 
 	return (
 		<section
