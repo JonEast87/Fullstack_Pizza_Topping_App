@@ -17,7 +17,7 @@ function toppingExists(req, res, next) {
 		.catch(next)
 }
 
-async function list(req, res) {
+async function list(req, res, next) {
 	service
 		.list()
 		.then((data) => res.json({ data }))
