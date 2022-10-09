@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { listPizzas, listToppings } from '../utils/api'
 import PizzasList from '../pizzas/list/PizzaList'
-// import ToppingsList from '../pizzas/list/ToppingList'
+import ToppingsList from '../toppings/list/ToppingList'
 import ErrorAlert from '../layout/ErrorAlert'
 
 /**
@@ -60,7 +60,7 @@ function Dashboard() {
 						<legend className='pl-2 text-white shadow bg-dark rounded sticky-top'>
 							Toppings
 						</legend>
-						{/* <ToppingsList toppings={toppings} /> */}
+						<ToppingsList toppings={toppings} />
 						<ErrorAlert error={toppingsError} />
 					</fieldset>
 				</div>
