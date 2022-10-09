@@ -24,6 +24,11 @@ async function list(req, res, next) {
 		.catch(next)
 }
 
+async function read(req, res) {
+	const { pizza } = res.locals
+	res.json({ data: pizza })
+}
+
 async function create(req, res) {
 	const data = await service.create(req.body.data)
 	res.status(201).json({ data })
@@ -51,6 +56,7 @@ async function destroy(req, res, next) {
 module.exports = {
 	list,
 	create: [hasRequiredProperties, create],
+	read: [pizzaExists, read],
 	update: [pizzaExists, hasRequiredProperties, update],
 	delete: [pizzaExists, destroy],
 }

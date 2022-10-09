@@ -29,6 +29,11 @@ async function create(req, res) {
 	res.status(201).json({ data })
 }
 
+async function read(req, res) {
+	const { topping } = res.locals
+	res.json({ data: topping })
+}
+
 async function update(req, res, next) {
 	const updatedTopping = {
 		...req.body.data,
@@ -50,6 +55,7 @@ async function destroy(req, res, next) {
 module.exports = {
 	list,
 	create: [hasRequiredProperties, create],
+	read: [toppingExists, read],
 	update: [toppingExists, hasRequiredProperties, update],
 	delete: [toppingExists, destroy],
 }

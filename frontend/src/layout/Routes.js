@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import Dashboard from '../dashboard/Dashboard'
 import Pizzas from '../pizzas/Pizza'
 import NotFound from './NotFound'
+import Toppings from '../toppings/Toppings'
 
 /**
  * Defines all the routes for the application.
@@ -25,6 +26,9 @@ function Routes() {
 			</Route>
 			<Route path='/dashboard'>
 				<Dashboard />
+			</Route>
+			<Route path='/toppings'>
+				<Toppings />
 			</Route>
 			<Route>
 				<NotFound />
