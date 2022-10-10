@@ -23,7 +23,6 @@ function Form({ method }) {
 		toppings: [],
 	}
 
-	let toppingsArray = []
 	const [pizza, setPizza] = useState({ ...initialState })
 
 	useEffect(() => {
@@ -40,7 +39,6 @@ function Form({ method }) {
 			...pizza,
 			[target.name]: [...pizza.toppings, target.id],
 		})
-		console.log(pizza)
 	}
 
 	const handleSubmit = (event) => {
@@ -64,8 +62,8 @@ function Form({ method }) {
 		const pizzaData = {
 			toppings: pizza.toppings,
 		}
-
-		updatePizza(pizza_id, pizzaData.toppings, abortController.signal)
+		console.log(pizzaData)
+		updatePizza(pizza_id, pizzaData, abortController.signal)
 			.then(() => history.push(`/dashboard`))
 			.catch(setPizzaError)
 	}

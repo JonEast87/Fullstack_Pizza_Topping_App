@@ -5,7 +5,7 @@ import { deletePizza } from '../../utils/api'
 import ErrorAlert from '../../layout/ErrorAlert'
 
 function Pizza(pizza) {
-	const { pizza_id, name, toppings } = pizza.pizzas
+	const { pizza_id, toppings } = pizza.pizzas
 	const history = useHistory()
 
 	const [deletePizzaError, setDeletePizzaError] = useState(null)

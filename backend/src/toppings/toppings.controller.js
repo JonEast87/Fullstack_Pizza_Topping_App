@@ -24,9 +24,13 @@ async function list(req, res, next) {
 		.catch(next)
 }
 
-async function create(req, res) {
-	const data = await service.create(req.body.data)
-	res.status(201).json({ data })
+async function create(req, res, next) {
+	const data = req.body.data
+
+	service
+		.create(data)
+		.then((data) => res.status(201).json({ data }))
+		.catch(next)
 }
 
 async function read(req, res) {
