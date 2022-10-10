@@ -27,10 +27,6 @@ function Form({ method }) {
 		const abortController = new AbortController()
 		setToppingError(null)
 
-		// readTopping(topping_id, abortController.signal)
-		// 	.then(setTopping)
-		// 	.catch(setToppingError)
-
 		return () => abortController.abort()
 	}, [topping_id, method])
 

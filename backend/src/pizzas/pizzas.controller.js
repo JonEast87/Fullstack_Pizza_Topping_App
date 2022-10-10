@@ -1,7 +1,7 @@
 const service = require('./pizza.service')
 const hasProperties = require('../errors/hasProperties')
 
-const REQUIRED_PROPERTIES = ['name', 'toppings']
+const REQUIRED_PROPERTIES = ['toppings']
 const hasRequiredProperties = hasProperties(...REQUIRED_PROPERTIES)
 
 function pizzaExists(req, res, next) {
