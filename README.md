@@ -7,3 +7,5 @@
 ---
 
 > Frontend setup instructions are in the ./frontend directory `README.md`
+
+### Live Demo: https://fullstack-pizza-topping-frontend.vercel.app/dashboard

@@ -5,7 +5,7 @@
 
 const API_BASE_URL =
 	process.env.REACT_APP_API_BASE_URL ||
-	'fullstack-pizza-topping-backend-4x64h4af2-joneast87.vercel.app'
+	'https://fullstack-pizza-topping-backend.vercel.app'
 
 /**
  * Defines the default headers for these function to work with `json-server`
