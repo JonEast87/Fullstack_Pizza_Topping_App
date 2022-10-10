@@ -62,7 +62,7 @@ function Form({ method }) {
 		const pizzaData = {
 			toppings: pizza.toppings,
 		}
-		console.log(pizzaData)
+
 		updatePizza(pizza_id, pizzaData, abortController.signal)
 			.then(() => history.push(`/dashboard`))
 			.catch(setPizzaError)

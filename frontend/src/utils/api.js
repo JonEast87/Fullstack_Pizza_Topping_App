@@ -4,7 +4,8 @@
  */
 
 const API_BASE_URL =
-	process.env.REACT_APP_API_BASE_URL || 'http://localhost:5001'
+	process.env.REACT_APP_API_BASE_URL ||
+	'fullstack-pizza-topping-backend-4x64h4af2-joneast87.vercel.app'
 
 /**
  * Defines the default headers for these function to work with `json-server`
