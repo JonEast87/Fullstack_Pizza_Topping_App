@@ -21,23 +21,8 @@ describe('path /pizzas', () => {
 
 	// TESTING FOR POST FUNCTIONS
 	describe('POST /pizzas', () => {
-		test('return 400 if name is missing', async () => {
-			const data = {
-				toppings: ['pepperoni', 'mushroom'],
-			}
-			const response = await request(app)
-				.post('/pizzas')
-				.set('Accept', 'application/json')
-				.send({ data })
-
-			expect(response.body.error).toContain('name')
-			expect(response.status).toBe(400)
-		})
-
 		test('return 400 if toppings is missing', async () => {
-			const data = {
-				name: 'Green',
-			}
+			const data = {}
 			const response = await request(app)
 				.post('/pizzas')
 				.set('Accept', 'application/json')
@@ -49,7 +34,6 @@ describe('path /pizzas', () => {
 
 		test('returns 201 if data is valid', async () => {
 			const data = {
-				name: 'Green',
 				toppings: ['pepperoni', 'mushroom'],
 			}
 
@@ -59,7 +43,6 @@ describe('path /pizzas', () => {
 				.send({ data })
 
 			expect(response.body.error).toBeUndefined()
-			expect(response.body.data.name).toBe('Green')
 			expect(response.body.data.toppings).toContain('pepperoni')
 			expect(response.body.data.toppings).toContain('mushroom')
 			expect(response.status).toBe(201)
@@ -69,23 +52,8 @@ describe('path /pizzas', () => {
 
 	// TESTING FOR PUT FUNCTIONS
 	describe('PUT /pizzas', () => {
-		test('return 400 if name is missing', async () => {
-			const data = {
-				toppings: ['pepperoni', 'mushroom'],
-			}
-			const response = await request(app)
-				.post('/pizzas')
-				.set('Accept', 'application/json')
-				.send({ data })
-
-			expect(response.body.error).toContain('name')
-			expect(response.status).toBe(400)
-		})
-
 		test('return 400 if toppings is missing', async () => {
-			const data = {
-				name: 'Green',
-			}
+			const data = {}
 
 			const response = await request(app)
 				.post('/pizzas')
@@ -98,7 +66,6 @@ describe('path /pizzas', () => {
 
 		test('returns 201 if data is valid', async () => {
 			const expected = {
-				name: 'Green',
 				toppings: ['pepperoni', 'mushroom'],
 			}
 
@@ -109,12 +76,11 @@ describe('path /pizzas', () => {
 			Object.entries(expected).forEach(([key, value]) => (pizza[key] = value))
 
 			const response = await request(app)
-				.put('/pizzas/1')
+				.put('/pizzas/1/edit')
 				.set('Accept', 'application/json')
 				.send({ data: pizza })
 
 			expect(response.body.error).toBeUndefined()
-			expect(response.body.data[0].name).toBe('Green')
 			expect(response.body.data[0].toppings).toContain('pepperoni')
 			expect(response.body.data[0].toppings).toContain('mushroom')
 			expect(response.status).toBe(200)
@@ -136,7 +102,6 @@ describe('path /pizzas', () => {
 
 		test('return 200 if pizza is delete successfully', async () => {
 			const data = {
-				name: 'Green',
 				toppings: ['pepperoni', 'mushroom'],
 			}
 

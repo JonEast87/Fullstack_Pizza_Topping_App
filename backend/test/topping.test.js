@@ -75,7 +75,7 @@ describe('path /toppings', () => {
 			Object.entries(expected).forEach(([key, value]) => (topping[key] = value))
 
 			const response = await request(app)
-				.put('/toppings/1')
+				.put('/toppings/1/edit')
 				.set('Accept', 'application/json')
 				.send({ data: topping })
 
